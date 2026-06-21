@@ -1,0 +1,57 @@
+services:
+
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    restart: always
+    env_file: .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    env_file: .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    env_file: .env
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+
+
+
+volumes:
+  mariadb_data:       #C'est le nom du volume Docker.
+    driver: local
+    driver_opts:
+      type: none
+      o: bind         #Le bind indique à Docker : "N'utilise pas le dossier habituel des volumes Docker. Utilise directement un dossier du système hôte."
+      device: /home/noakebli/data/mariadb   #Les données seront physiquement stockées ici sur ta machine : /home/noura/data/mariadb 
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/noakebli/data/wordpress
+
+networks:
+  inception:
+    driver: bridge
