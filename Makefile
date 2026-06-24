@@ -1,4 +1,5 @@
-DATA_PATH	= /home/noakebli/data
+DATA_PATH = /home/noakebli/data
+
 
 all:
 	@mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress

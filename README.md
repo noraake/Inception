@@ -20,7 +20,7 @@ The stack is made of three custom-built Debian-based images, one per service, or
                                      │ fastcgi :9000
                          ┌───────────▼─────────────┐
                          │       WordPress           │
-                         │   (php-fpm 7.4 + WP-CLI)  │
+                         │   (php-fpm 8.2 + WP-CLI)  │
                          └───────────┬─────────────┘
                                      │ :3306
                          ┌───────────▼─────────────┐

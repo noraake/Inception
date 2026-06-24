@@ -39,4 +39,4 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
     chown -R www-data:www-data /var/www/html
 fi
 
-exec php-fpm7.4 -F
+exec php-fpm8.2 -F

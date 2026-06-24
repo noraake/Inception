@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 # installe le moteur de base de donnee Mariadb . il contient le service de base se donnee, l outil de ligne commande , les fichiers de configuration /etc/mysql/, le script de securisation 
 RUN apt-get update && apt-get install -y mariadb-server
